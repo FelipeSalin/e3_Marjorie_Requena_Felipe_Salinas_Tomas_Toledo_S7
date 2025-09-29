@@ -1,5 +1,5 @@
-*.env
-*settings.py
+.env
+**settings.py
 __pycache__/
 *.py[cod]
 */migrations/*.pyc
