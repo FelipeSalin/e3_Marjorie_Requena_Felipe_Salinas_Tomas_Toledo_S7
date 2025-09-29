@@ -356,3 +356,4 @@ def limpiar_producto(request,usuario):
 def listar_categorias(request):
     categorias = Categoria.objects.all()
     serializer = CategoriaSerializer(categorias, many=True)
+    return Response(serializer.data)
