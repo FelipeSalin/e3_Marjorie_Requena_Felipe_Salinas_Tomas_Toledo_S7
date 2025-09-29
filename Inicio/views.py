@@ -364,6 +364,7 @@ def limpiar_producto(request,usuario):
 
 @api_view(['GET'])
 def listar_tipoUsuario(request):
+    tipousuario = TipoUsuario.objects.all()
     serializer = TipoUsuarioSerializer(tipousuario, many=True)
     return Response(serializer.data)
 
