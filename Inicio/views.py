@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from .models import Usuario,Direccion,Comuna,Region,TipoUsuario, Producto, Marca,Categoria,TipoProd,Marca
 from django.contrib import messages
 from .Carrito import Carrito
+from rest_framework.decorators import api_view 
+from rest_framework.response import Response
 
 # Create your views here.
 def inicio(request):
