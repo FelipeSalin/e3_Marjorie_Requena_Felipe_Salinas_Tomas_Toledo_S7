@@ -7,38 +7,38 @@ class TipoUsuarioSerializer(serializers.ModelSerializer):
         model = TipoUsuario
         fields = ['idTipoUsuario', 'nombreTipo']
 
-class UsuarioSerializer(serializers.Serializer):
+class UsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = Usuario
         fields = ['username', 'contrasennia', 'nombre', 'apellido', 'email', 'tipousuario']
 
-class ComunaSerializer(serializers.Serializer):
+class ComunaSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comuna
         fields = ['idComuna', 'nombreCom']
 
-class RegionSerializer(serializers.Serializer):
+class RegionSerializer(serializers.ModelSerializer):
     class Meta:
         model = Region
         fields = ['idRegion', 'nombreReg', 'comuna']
 
-class MarcaSerializer(serializers.ModeloSerializer):
-    class Marca:
+class MarcaSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Marca
         fields = ['idMarca', 'nombreMarca']
         
-class ModeloSerializer(serializers.ModeloSerializer):
-    class Modelo:
+class ModeloSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Modelo
         fields = ['idModelo', 'nombreModelo', 'Marca']
         
-class ProductoSerializer(serializers.ModeloSerializer):
-    class Producto:
+class ProductoSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Producto
         fields = ['idProducto', 'nombreProducto', 'precioProducto','especificacionProd', 'stockProd','imagenProd', 'tipoprod', 'marca' ]
         
-class DetalleSerializer(serializers.ModeloSerializer):
-    class Detalle:
+class DetalleSerializer(serializers.ModelSerializer):
+    class Meta:
         model = Detalle
         fields = ['idDetalle', 'cantidad ', 'subTotal', 'venta', 'producto']
 from Inicio.models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle
