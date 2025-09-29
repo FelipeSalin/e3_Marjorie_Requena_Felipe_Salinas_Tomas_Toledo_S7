@@ -1,3 +1,5 @@
+import requests
+
 from django.shortcuts import render,redirect
 from Inicio.models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle
 
@@ -358,9 +360,143 @@ def limpiar_producto(request,usuario):
     return render(request,'Inicio/carrito.html',contexto)
 
 
+#views de rest_api
+
+@api_view(['GET'])
+def listar_tipoUsuario(request):
+    serializer = TipoUsuarioSerializer(tipousuario, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_usuarios(request, idTipoUsuario=None):
+    if idTipoUsuario:
+        usuarios = Usuario.objects.filter(tipousuario=idTipoUsuario)
+    else:
+        usuarios = Usuario.objects.all()
+    serializer = UsuarioSerializer(usuarios, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_comunas(request):
+    comunas = Comuna.objects.all()
+    serializer = ComunaSerializer(comunas, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_regiones(request, idComuna=None):
+    if idComuna:
+        regiones = Region.objects.filter(comuna=idComuna)
+    else:
+        regiones = Region.objects.all()
+    serializer = RegionSerializer(regiones, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_direcciones(request):
+    direcciones = Direccion.objects.all()
+    serializer = DireccionSerializer(direcciones, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_direccionesregion(request, idRegion=None):
+    if idRegion:
+        direccionregiones = Direccion.objects.filter(region=idRegion)
+    else:
+        direccionregiones = Direccion.objects.all()
+    serializer = DireccionSerializer(direccionregiones, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_ventas(request):
+    ventas = Venta.objects.all()
+    serializer = VentaSerializer(ventas, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def listar_categorias(request):
     categorias = Categoria.objects.all()
     serializer = CategoriaSerializer(categorias, many=True)
     return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_tipoProductos(request):
+    tipoProductos = TipoProd.objects.all()
+    serializer = TipoProdSerializer(tipoProductos, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_marcaProductos(request):
+    marcaProductos = Marca.objects.all()
+    serializer = MarcaSerializer(marcaProductos, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_modelos(request, idMarca=None):
+    if idMarca:
+        modelos = Modelo.objects.filter(marca_id=idMarca)
+    else:
+        modelos = Modelo.objects.all()
+    serializer = ModeloSerializer(modelos, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_productos(request, idTiporod=None):
+    if idTiporod:
+        productos = Producto.objects.filter(tipoprod=idTiporod)
+    else:
+        productos = Producto.objects.all()
+    serializer = ProductoSerializer(productos, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_productosMarca(request, idMarca=None):
+    if idMarca:
+        mproductos = Producto.objects.filter(marca_id=idMarca)
+    else:
+        mproductos = Producto.objects.all()
+    serializer = ProductoSerializer(mproductos, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_detalleporventa(request, idVenta=None):
+    if idVenta:
+        vdetalle = Detalle.objects.filter(venta_id=idVenta)
+    else:
+        vdetalle = Detalle.objects.all()
+    serializer = DetalleSerializer(vdetalle, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def listar_detalleporproducto(request, idProducto=None):
+    if idProducto:
+        pdetalle = Detalle.objects.filter(producto_id=idProducto)
+    else:
+        pdetalle = Detalle.objects.all()
+    serializer = DetalleSerializer(pdetalle, many=True)
+    return Response(serializer.data)
+
+
+"""
+ejemplo ocupando request, que es (por lo que entiendo) con urls externas
+@api_view(['GET'])
+def noticias_juegos(request):
+    response = requests.get(url="https://www.mmobomb.com/api1/latestnews")
+    noticias = []
+    if response.status_code == 200:
+        noticias = response.json()
+    return Response(noticias)
+
+Ejemplo con un diccionario, datos en bruto
+@api_view(['GET'])
+def mis_datos(request):
+    datos = {
+        "nombre": "Marcelo",
+        "curso": "Programación Web",
+        "nivel": "Intermedio",
+        "institución": "Duoc UC",
+        "edad": "no me acuerdo",
+        "fecha": "2024-03-05",
+        "hobbies": ["progamar", "programar", "programar"]
+    }
+    return Response(datos)
+"""
