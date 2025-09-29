@@ -1,9 +1,14 @@
 from django.shortcuts import render,redirect
-from .models import Usuario,Direccion,Comuna,Region,TipoUsuario, Producto, Marca,Categoria,TipoProd,Marca
+from Inicio.models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle
+
 from django.contrib import messages
 from .Carrito import Carrito
-from rest_framework.decorators import api_view 
+
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
+
+from rest_api.serializers import TipoUsuarioSerializer, UsuarioSerializer, ComunaSerializer, RegionSerializer, DireccionSerializer, VentaSerializer, CategoriaSerializer, TipoProdSerializer, MarcaSerializer, ModeloSerializer, ProductoSerializer, DetalleSerializer
+
 
 # Create your views here.
 def inicio(request):
@@ -347,4 +352,7 @@ def limpiar_producto(request,usuario):
 
 
 
-
+@api_view(['GET'])
+def listar_categorias(request):
+    categorias = Categoria.objects.all()
+    serializer = CategoriaSerializer(categorias, many=True)

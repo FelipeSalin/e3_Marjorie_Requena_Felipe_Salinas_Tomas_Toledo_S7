@@ -2,22 +2,22 @@ from rest_framework import serializers
 #ejemplo
 from Inicio.models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle 
 
-class tipoUsuarioSerializer(serializers.ModelSerializer):
+class TipoUsuarioSerializer(serializers.ModelSerializer):
     class Meta:
         model = TipoUsuario
         fields = ['idTipoUsuario', 'nombreTipo']
 
-class usuarioSerializar(serializers.Serializer):
+class UsuarioSerializer(serializers.Serializer):
     class Meta:
         model = Usuario
         fields = ['username', 'contrasennia', 'nombre', 'apellido', 'email', 'tipousuario']
 
-class comunaSerializer(serializers.Serializer):
+class ComunaSerializer(serializers.Serializer):
     class Meta:
         model = Comuna
         fields = ['idComuna', 'nombreCom']
 
-class regionSerializer(serializers.Serializer):
+class RegionSerializer(serializers.Serializer):
     class Meta:
         model = Region
         fields = ['idRegion', 'nombreReg', 'comuna']
@@ -41,3 +41,24 @@ class DetalleSerializer(serializers.ModeloSerializer):
     class Detalle:
         model = Detalle
         fields = ['idDetalle', 'cantidad ', 'subTotal', 'venta', 'producto']
+from Inicio.models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle
+
+class DireccionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Direccion
+        fields = ['idDireccion', 'descripcionDir', 'usuario', 'region']
+    
+class VentaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Venta
+        fields = ['idVenta', 'fechaVenta', 'usuario']
+
+class CategoriaSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Categoria
+        fields = ['idCategoria', 'nombreCat']
+
+class TipoProdSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = TipoProd
+        fields = ['idTiporod', 'nombreTipoProd']
