@@ -178,12 +178,16 @@
                           <input type="password" class="form-control bg-dark-x mb-2" name="contra2" placeholder="Confirme su contraseña" id="contra2">
                         </div>
                         <div class="mb-1">
-                          <label for="exampleInputPassword1" class="form-label font-weight-bold" >Región<span class="text-danger"> *</span></label>
-                          <select class="form-select" aria-label="Disabled select example" name="region" id ="region" required>
-                                {% for x in regiones_m %}
-                                <option selected>Selecciona una región</option>
-                                <option value="{{ x.idRegion }}">{{ x.nombreReg }}</option>
-                             {% endfor %}
+                          <label for="region" class="form-label fw-bold">Región <span class="text-danger">*</span></label>
+                          <select class="form-select" name="region" id="region" required>
+                            <option value="" selected disabled>Selecciona una región</option>
+                            {% for x in regiones_m %}
+                            <option value="{{ x.idRegion }}">{{ x.nombreReg }}</option>
+                            {% endfor %}
+                          </select>
+                        </div>
+
+                            
                             
                             
                           </select>
