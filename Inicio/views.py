@@ -378,6 +378,12 @@ def listar_usuarios(request, idTipoUsuario=None):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def lista_usuario(request):
+    usuario = Usuario.objects.all()
+    serializer = UsuarioSerializer(usuario, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def listar_comunas(request):
     comunas = Comuna.objects.all()
     serializer = ComunaSerializer(comunas, many=True)
@@ -390,6 +396,12 @@ def listar_regiones(request, idComuna=None):
     else:
         regiones = Region.objects.all()
     serializer = RegionSerializer(regiones, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+def lista_region(request):
+    region = Region.objects.all()
+    serializer = RegionSerializer(region, many=True)
     return Response(serializer.data)
 
 @api_view(['GET'])
@@ -439,6 +451,12 @@ def listar_modelos(request, idMarca=None):
         modelos = Modelo.objects.all()
     serializer = ModeloSerializer(modelos, many=True)
     return Response(serializer.data)
+    
+@api_view(['GET'])
+def lista_modelo(request):
+    modelo = Modelo.objects.all()
+    serializer = ModeloSerializer(modelo, many=True)
+    return Response(serializer.data)
 
 @api_view(['GET'])
 def listar_productos(request, idTiporod=None):
@@ -459,6 +477,12 @@ def listar_productosMarca(request, idMarca=None):
     return Response(serializer.data)
 
 @api_view(['GET'])
+def lista_producto(request):
+    producto = Producto.objects.all()
+    serializer = ProductoSerializer(producto, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
 def listar_detalleporventa(request, idVenta=None):
     if idVenta:
         vdetalle = Detalle.objects.filter(venta_id=idVenta)
@@ -476,9 +500,15 @@ def listar_detalleporproducto(request, idProducto=None):
     serializer = DetalleSerializer(pdetalle, many=True)
     return Response(serializer.data)
 
+@api_view(['GET'])
+def lista_detalle(request):
+    detalle = Detalle.objects.all()
+    serializer = DetalleSerializer(detalle, many=True)
+    return Response(serializer.data)
 
-"""
-ejemplo ocupando request, que es (por lo que entiendo) con urls externas
+
+
+#ejemplo ocupando request, que es (por lo que entiendo) con urls externas
 @api_view(['GET'])
 def noticias_juegos(request):
     response = requests.get(url="https://www.mmobomb.com/api1/latestnews")
@@ -487,6 +517,7 @@ def noticias_juegos(request):
         noticias = response.json()
     return Response(noticias)
 
+"""
 Ejemplo con un diccionario, datos en bruto
 @api_view(['GET'])
 def mis_datos(request):
