@@ -1,32 +1,48 @@
 from django.shortcuts import render
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from rest_framework.parsers import JSONParser
-from django.views.decorators.csrf import csrf_exempt
 
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import check_password
 from rest_framework.authtoken.models import Token
 
-@csrf_exempt
-@api_view(['POST'])
-def login(request):
-    data = JSONParser().parse(request)
+from rest_framework.permissions import AllowAny
 
-    username = data['username']
-    password = data['password']
+
+@api_view(['POST'])
+@permission_classes([AllowAny])  # Permitir login sin autenticación previa
+def login(request):
+    data = request.data  # DRF ya parsea JSON automáticamente
+
+    username = data.get('username')
+    password = data.get('password')
+
+    if not username or not password:
+        return Response(
+            {"error": "Debe ingresar username y password"},
+            status=status.HTTP_400_BAD_REQUEST
+        )
 
     try:
         user = User.objects.get(username=username)
     except User.DoesNotExist:
-        return Response("Usuario incorrecto")
+        return Response(
+            {"error": "Usuario incorrecto"},
+            status=status.HTTP_401_UNAUTHORIZED
+        )
     
-    #Validacion de pw
-    pass_valido = check_password(password,user.password)
-    if not pass_valido:
-        return Response("Contraseña incorrecta")
+    # Validación de contraseña
+    if not check_password(password, user.password):
+        return Response(
+            {"error": "Contraseña incorrecta"},
+            status=status.HTTP_401_UNAUTHORIZED
+        )
     
-    #Crear o recuperar token
+    # Crear o recuperar token
     token, created = Token.objects.get_or_create(user=user)
-    return Response(token.key)
+    return Response(
+        {"token": token.key},
+        status=status.HTTP_200_OK
+    )
