@@ -228,3 +228,314 @@ def lista_Detalle(request):
         
 
 #Detalles de los modelos (GET, PUT, DELETE)
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_TipoUsuario(request, id):
+    try:
+        m = TipoUsuario.objects.get(id = id) #ver BD
+    except TipoUsuario.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = TipoUsuarioSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = TipoUsuarioSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+    
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Usuario(request, id):
+    try:
+        m = Usuario.objects.get(id = id) #ver BD
+    except Usuario.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = UsuarioSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = UsuarioSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Comuna(request, id):
+    try:
+        m = Comuna.objects.get(id = id) #ver BD
+    except Comuna.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = ComunaSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = ComunaSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Region(request, id):
+    try:
+        m = Region.objects.get(id = id) #ver BD
+    except Region.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = RegionSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = RegionSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Direccion(request, id):
+    try:
+        m = Direccion.objects.get(id = id) #ver BD
+    except Direccion.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = DireccionSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = DireccionSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Venta(request, id):
+    try:
+        m = Venta.objects.get(id = id) #ver BD
+    except Venta.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = VentaSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = VentaSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Categoria(request, id):
+    try:
+        m = Categoria.objects.get(id = id) #ver BD
+    except Categoria.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = CategoriaSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = CategoriaSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_TipoProd(request, id):
+    try:
+        m = TipoProd.objects.get(id = id) #ver BD
+    except TipoProd.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = TipoProdSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = TipoProdSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Marca(request, id):
+    try:
+        m = Marca.objects.get(id = id) #ver BD
+    except Marca.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = MarcaSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = MarcaSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Modelo(request, id):
+    try:
+        m = Modelo.objects.get(id = id) #ver BD
+    except Modelo.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = ModeloSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = ModeloSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Producto(request, id):
+    try:
+        m = Producto.objects.get(id = id) #ver BD
+    except Producto.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = ProductoSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = ProductoSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
+
+
+@csrf_exempt
+@api_view(['GET', 'PUT', 'DELETE'])
+def detalle_Detalle(request, id):
+    try:
+        m = Detalle.objects.get(id = id) #ver BD
+    except Detalle.DoesNotExist:
+        return Response(status = status.HTTP_404_NOT_FOUND)
+    
+    if request.method == 'GET':
+        serializer = DetalleSerializer(m)
+        return Response(serializer.data)
+    
+    elif request.method == 'PUT':
+        data = JSONParser().parser(request)
+        serializer = DetalleSerializer(m, data = data) #ver BD
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        else:
+            return Response(serializer.errors, status = status.HTTP_400_BAD_REQUEST)
+        
+    elif request.method == 'DELETE':
+        m.delete()
+        return Response(status = status.HTTP_204_NO_CONTENT)
