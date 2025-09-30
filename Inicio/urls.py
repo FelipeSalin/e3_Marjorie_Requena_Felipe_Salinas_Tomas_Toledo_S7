@@ -3,6 +3,7 @@ from django.urls import path, include
 from .views import iniciar,iniciar_sesion, inicio, inicioadmin, registrar_m, registrarse, newProd,addprod,vistamod,eliminarProducto,menuadmin,micadmin,tecladoadmin,mouseAdmin,ramAdmin,graficaAdmin,procesadorAdmin,mostrarTeclado,teclado,mostrarMic,micro,mostrarMouse,mouse,mostrarGrafica,grafica,mostrarRam,ram,mostrarProcesador,procesador,carrito,perfilusuario,edicionProducto,editarProducto, mostrarperfil, modificarPerfil ,agregar_producto,eliminar_producto,restar_producto,limpiar_producto
 from django.conf import settings
 from django.conf.urls.static import static
+from rest_api.viewsLogin import login
 
 from Inicio.views import listar_categorias, listar_tipoProductos, listar_marcaProductos, listar_productos, listar_productosMarca, listar_tipoUsuario, listar_usuarios, listar_comunas, listar_regiones, listar_direcciones, listar_direccionesregion, listar_ventas, listar_modelos, listar_detalleporventa, listar_detalleporproducto #noticias_juegos, mis_datos
 
@@ -102,5 +103,8 @@ urlpatterns = [
 
     path('edicionProducto/<idProducto>', edicionProducto, name="edicionProducto"),
     path('editarProducto/<idProducto>', editarProducto, name="editarProducto"),
+
+   
+    path('login/', login, name='login'),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
