@@ -18,7 +18,7 @@ def login(request):
     password = data['password']
 
     try:
-        user = User.objects.get(username=username)
+        user = User.objects.get(username = username) #revisar en BD
     except User.DoesNotExist:
         return Response("Usuario incorrecto")
     
@@ -28,5 +28,5 @@ def login(request):
         return Response("Contraseña incorrecta")
     
     #Crear o recuperar token
-    token, created = Token.objects.get_or_create(user=user)
+    token, created = Token.objects.get_or_create(user = user) #revisar en BD
     return Response(token.key)
