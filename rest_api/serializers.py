@@ -1,5 +1,4 @@
 from rest_framework import serializers
-#ejemplo
 from Inicio.models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle 
 
 class TipoUsuarioSerializer(serializers.ModelSerializer):
@@ -41,7 +40,6 @@ class DetalleSerializer(serializers.ModelSerializer):
     class Meta:
         model = Detalle
         fields = ['idDetalle', 'cantidad ', 'subTotal', 'venta', 'producto']
-from Inicio.models import TipoUsuario, Usuario, Comuna, Region, Direccion, Venta, Categoria, TipoProd, Marca, Modelo, Producto, Detalle
 
 class DireccionSerializer(serializers.ModelSerializer):
     class Meta:
