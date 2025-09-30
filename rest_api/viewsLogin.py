@@ -26,7 +26,7 @@ def login(request):
         )
 
     try:
-        user = User.objects.get(username=username)
+        user = User.objects.get(username = username) #revisar en BD
     except User.DoesNotExist:
         return Response(
             {"error": "Usuario incorrecto"},
@@ -46,3 +46,6 @@ def login(request):
         {"token": token.key},
         status=status.HTTP_200_OK
     )
+    #Crear o recuperar token
+    token, created = Token.objects.get_or_create(user = user) #revisar en BD
+    return Response(token.key)
