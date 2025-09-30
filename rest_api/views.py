@@ -242,7 +242,7 @@ def detalle_TipoUsuario(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = TipoUsuarioSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -268,7 +268,7 @@ def detalle_Usuario(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = UsuarioSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -294,7 +294,7 @@ def detalle_Comuna(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = ComunaSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -320,7 +320,7 @@ def detalle_Region(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = RegionSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -346,7 +346,7 @@ def detalle_Direccion(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = DireccionSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -372,7 +372,7 @@ def detalle_Venta(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = VentaSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -398,7 +398,7 @@ def detalle_Categoria(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = CategoriaSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -424,7 +424,7 @@ def detalle_TipoProd(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = TipoProdSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -450,7 +450,7 @@ def detalle_Marca(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = MarcaSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -476,7 +476,7 @@ def detalle_Modelo(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = ModeloSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -502,7 +502,7 @@ def detalle_Producto(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = ProductoSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
@@ -528,7 +528,7 @@ def detalle_Detalle(request, id):
         return Response(serializer.data)
     
     elif request.method == 'PUT':
-        data = JSONParser().parser(request)
+        data = JSONParser().parse(request)
         serializer = DetalleSerializer(m, data = data) #ver BD
         if serializer.is_valid():
             serializer.save()
